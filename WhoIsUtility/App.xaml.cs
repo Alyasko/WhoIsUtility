@@ -5,7 +5,6 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using WhoIsUtility.ViewModels;
 
 namespace WhoIsUtility
 {
@@ -16,10 +15,7 @@ namespace WhoIsUtility
     {
         private void App_OnStartup(object sender, StartupEventArgs e)
         {
-            var vm = new MainWindowVm();
-
             var view = new MainWindow();
-            view.DataContext = vm;
             view.Show();
         }
     }

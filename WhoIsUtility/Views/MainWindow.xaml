@@ -4,9 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WhoIsUtility"
-        xmlns:viewModels="clr-namespace:WhoIsUtility.ViewModels"
         mc:Ignorable="d"
-        d:DataContext="{d:DesignInstance viewModels:MainWindowVm, IsDesignTimeCreatable=True}"
+        DataContext="{Binding Main, Source={StaticResource Locator}}"
         Title="{Binding WindowTitle}" Height="300" Width="525">
     <Grid>
         <Grid.RowDefinitions>
@@ -17,7 +16,7 @@
             <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Button Margin="5" Name="BtnGetHostInfo" Content="Get Host Info"/>
+        <Button Margin="5" Name="BtnGetHostInfo" Command="{Binding GetInfoCommand}" Content="Get Host Info"/>
         <TextBox Margin="5" Grid.Column="1" TextWrapping="Wrap" Text="TextBox"/>
         <RichTextBox Margin="5" Grid.Row="1" Grid.ColumnSpan="2">
             <FlowDocument>

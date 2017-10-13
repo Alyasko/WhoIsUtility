@@ -11,7 +11,9 @@ namespace WhoIsUtility.Tests
         public void TestHostInfo()
         {
             IWhoIs whoIs = new WhoIs();
-            var resp = whoIs.GetHostInfo("google.com");
+            var resp = whoIs.GetHostInfo("google.com").Result;
+
+            Assert.IsTrue(resp.Length > 0);
         }
     }
 }

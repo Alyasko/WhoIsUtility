@@ -1,7 +1,9 @@
-﻿namespace WhoIsUtility.Core
+﻿using System.Threading.Tasks;
+
+namespace WhoIsUtility.Core
 {
     public interface IWhoIs
     {
-        string GetHostInfo(string hostName);
+        Task<string> GetHostInfo(string hostName);
     }
 }
