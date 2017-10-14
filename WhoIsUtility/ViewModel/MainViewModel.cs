@@ -1,7 +1,9 @@
+using System;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using System.Windows;
+using WhoIsUtility.Core;
 
 namespace WhoIsUtility.ViewModel
 {
@@ -19,27 +21,45 @@ namespace WhoIsUtility.ViewModel
     /// </summary>
     public class MainViewModel : ViewModelBase
     {
+        private IWhoIs _whoIs;
+
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
         public MainViewModel()
         {
-            GetInfoCommand = new RelayCommand(() =>
-            {
-                MessageBox.Show("Test");
-            });
+            GetInfoCommand = new RelayCommand(GetInfoHandler);
 
             if (IsInDesignMode)
             {
-                WindowTitle = "Hello MVVM Light (Design Mode)";
+                WindowTitle = "WhoIs Utility (Design Mode)";
             }
             else
             {
-                WindowTitle = "Hello MVVM Light";
+                WindowTitle = "WhoIs Utility";
+                _whoIs = new WhoIs();
             }
         }
 
+        private async void GetInfoHandler()
+        {
+            ResponseText = await _whoIs.GetHostInfo(HostName);
+        }
+
         public string WindowTitle { get; set; }
+        public string HostName { get; set; } = "google.com";
+
+        private string _responseText;
+
+        public string ResponseText
+        {
+            get { return _responseText; }
+            set
+            {
+                _responseText = value;
+                RaisePropertyChanged(nameof(ResponseText));
+            }
+        }
 
         public ICommand GetInfoCommand { get; set; }
     }

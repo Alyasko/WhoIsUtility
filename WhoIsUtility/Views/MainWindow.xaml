@@ -17,14 +17,9 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Button Margin="5" Name="BtnGetHostInfo" Command="{Binding GetInfoCommand}" Content="Get Host Info"/>
-        <TextBox Margin="5" Grid.Column="1" TextWrapping="Wrap" Text="TextBox"/>
-        <RichTextBox Margin="5" Grid.Row="1" Grid.ColumnSpan="2">
-            <FlowDocument>
-                <Paragraph>
-                    <Run Text="RichTextBox"/>
-                </Paragraph>
-            </FlowDocument>
-        </RichTextBox>
+        <TextBox Margin="5" Grid.Column="1" TextWrapping="Wrap" Text="{Binding HostName}"/>
+        <TextBox VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" TextWrapping="NoWrap" Text="{Binding ResponseText}" AcceptsReturn="True" Margin="5" Grid.Row="1" Grid.ColumnSpan="2">
+        </TextBox>
 
 
 

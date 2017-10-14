@@ -36,7 +36,17 @@ namespace WhoIsUtility.Core
 
             HttpResponseMessage response = client.SendAsync(request).Result;
 
-            return await response.Content.ReadAsStringAsync();
+            var raw = await response.Content.ReadAsStringAsync();
+
+            var xmlDoc = new XmlDocument();
+            xmlDoc.LoadXml(raw);
+
+            var nsmngr = new XmlNamespaceManager(xmlDoc.NameTable);
+            nsmngr.AddNamespace("hn", "http://www.webservicex.net");
+
+            var element = xmlDoc.SelectSingleNode("//hn:GetWhoISResult", nsmngr);
+
+            return element?.InnerText;
         }
 
         private string GetSoapXml(string hostName)

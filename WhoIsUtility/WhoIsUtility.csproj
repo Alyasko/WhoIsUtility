@@ -111,5 +111,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="WhoIsUtility.Core\WhoIsUtility.Core.csproj">
+      <Project>{589ec55e-ee7b-4aee-8457-67c6783f4155}</Project>
+      <Name>WhoIsUtility.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
